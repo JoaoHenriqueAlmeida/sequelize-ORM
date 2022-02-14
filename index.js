@@ -10,6 +10,9 @@ app.route('/user')
   .post(userController.createUser)
   .get(authMiddleware, userController.getAllUsers);
 
+  app.route('/user/:id')
+    .get(authMiddleware, userController.getUserById);
+
 app.route('/login')
   .post(userController.userLogin);
 
