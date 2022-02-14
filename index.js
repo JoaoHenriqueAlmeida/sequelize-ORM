@@ -18,7 +18,8 @@ app.route('/login')
   .post(userController.userLogin);
 
 app.route('/categories')
-  .post(authMiddleware, categoryController.createCategory);
+  .post(authMiddleware, categoryController.createCategory)
+  .get(authMiddleware, categoryController.getAll);
 
 app.listen(3000, () => console.log('ouvindo porta 3000!'));
 
