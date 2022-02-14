@@ -20,6 +20,11 @@ const createUser = async (user) => {
     if (error) {
      return responseValidate(400, error.message);
     }
+    const findByEmail = await User.findOne({ where: { email: user.email } });
+    console.log(findByEmail);
+    if (findByEmail) {
+      return responseValidate(409, 'User already registered');
+    }
     const newUser = await User.create(user);
     return responseValidate(201, '', newUser);
   } catch (error) {
