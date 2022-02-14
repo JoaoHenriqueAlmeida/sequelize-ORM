@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     image: DataTypes.STRING,
   }, {
-    timestamps: true,
+    timestamps: false,
   });
 
   return UserTable;
