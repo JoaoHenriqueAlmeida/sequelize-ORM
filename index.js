@@ -1,6 +1,7 @@
 const express = require('express');
 const authMiddleware = require('./middlewares/authMiddleware');
 const userController = require('./controllers/UserController');
+const categoryController = require('./controllers/CategoryController');
 
 const app = express();
 
@@ -15,6 +16,9 @@ app.route('/user')
 
 app.route('/login')
   .post(userController.userLogin);
+
+app.route('/categories')
+  .post(authMiddleware, categoryController.createCategory);
 
 app.listen(3000, () => console.log('ouvindo porta 3000!'));
 
