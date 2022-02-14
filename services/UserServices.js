@@ -1,5 +1,7 @@
 const Joi = require('joi');
+const jwt = require('jsonwebtoken');
 const { User } = require('../models');
+const secret = require('../config/secret');
 
 const schema = Joi.object({
   displayName: Joi.string().min(8).required(),
@@ -21,12 +23,15 @@ const createUser = async (user) => {
      return responseValidate(400, error.message);
     }
     const findByEmail = await User.findOne({ where: { email: user.email } });
-    console.log(findByEmail);
+
     if (findByEmail) {
       return responseValidate(409, 'User already registered');
     }
-    const newUser = await User.create(user);
-    return responseValidate(201, '', newUser);
+
+  await User.create(user);
+    const token = jwt.sign(user.email, secret);
+
+    return responseValidate(201, '', { token });
   } catch (error) {
     return responseValidate(500, error.message);
   }
