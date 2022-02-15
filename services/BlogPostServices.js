@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { BlogPost, Category, UserModel } = require('../models');
+const { BlogPost, Category, User } = require('../models');
 
 const schemeCreate = Joi.object({
   title: Joi.string().required(),
@@ -42,8 +42,8 @@ const getAll = async () => {
   try {
     const getAllBlog = await BlogPost.findAll({
       include: [
-        { model: UserModel, as: 'user', attributes: { exclude: ['password'] } },
-        { model: Category, as: 'categories', through: { attributes: [] } },
+        { model: User, as: 'user', attributes: { exclude: ['password'] } },
+        { model: Category, as: 'categories' },
       ],
     });
 
