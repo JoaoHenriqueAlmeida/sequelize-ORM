@@ -23,7 +23,8 @@ app.route('/categories')
   .get(authMiddleware, categoryController.getAll);
 
   app.route('/post')
-    .post(authMiddleware, blogPostController.create);
+    .post(authMiddleware, blogPostController.create)
+    .get(authMiddleware, blogPostController.getAll);
 
 app.listen(3000, () => console.log('ouvindo porta 3000!'));
 
