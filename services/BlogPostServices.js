@@ -19,8 +19,9 @@ const create = async ({ user, title, content, categoryIds }) => {
     if (error) {
       return responseValidate(400, error.message);
     }
+    
     const createPost = await BlogPost.create({
-      userId: user, title, content,
+      userId: user.id, title, content,
     });
 
     const checkCategory = await Category.findAll({
