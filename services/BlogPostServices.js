@@ -40,10 +40,10 @@ const create = async ({ user, title, content, categoryIds }) => {
 
 const getAll = async () => {
   try {
-    const getAllBlog = BlogPost.findAll({
+    const getAllBlog = await BlogPost.findAll({
       include: [
         { model: UserModel, as: 'user', attributes: { exclude: ['password'] } },
-        { model: Category, as: 'category' },
+        { model: Category, as: 'categories' },
       ],
     });
 
