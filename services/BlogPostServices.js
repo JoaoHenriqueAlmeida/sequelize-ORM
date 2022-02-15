@@ -20,7 +20,7 @@ const create = async ({ user, title, content, categoryIds }) => {
       return responseValidate(400, error.message);
     }
     const createPost = await BlogPost.create({
-      userId: user.id, title, content,
+      userId: user, title, content,
     });
 
     const checkCategory = await Category.findAll({

@@ -9,12 +9,6 @@ const BlogPost = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
-  CategoryTable.associate = (models) => {
-    CategoryTable.belongsTo(models.User, {
-      foreignKey: 'id', as: 'user',
-    });
-  };
-
   return CategoryTable;
 };
 
